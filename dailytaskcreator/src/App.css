@@ -1,38 +1,282 @@
-.App {
-  text-align: center;
+/* App.css - modern clean styling */
+
+/* Google font import (optional) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+  --bg-gradient: linear-gradient(180deg,#f6f8fb 0%, #ffffff 100%);
+  --card-bg: #ffffff;
+  --accent: #6c5ce7;
+  --muted: #7b7f90;
+  --radius: 14px;
+  --glass: rgba(255,255,255,0.6);
+  --shadow: 0 8px 28px rgba(20,24,48,0.08);
+  --soft-shadow: 0 6px 18px rgba(38,43,77,0.06);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* { box-sizing: border-box; }
+html,body,#root { height:100%; margin:0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: var(--bg-gradient); color:#111827; }
+
+.page { min-height:100vh; display:flex; flex-direction:column; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(90deg, rgba(108,92,231,0.12) 0%, rgba(99,102,241,0.06) 100%);
+  padding:48px 0;
+  box-shadow: var(--soft-shadow);
+}
+.hero-inner { max-width:1100px; margin:0 auto; padding:0 20px; }
+.hero-title { margin:0; font-size:28px; font-weight:700; color: #2b2546; }
+.hero-sub { margin:6px 0 0; color:var(--muted); }
+
+/* Layout container */
+.container { max-width:1100px; margin:28px auto; padding:0 20px 40px; width:100%; }
+.grid { display:grid; grid-template-columns: 1fr 420px; gap:24px; align-items:start; }
+@media (max-width:900px){ .grid{ grid-template-columns: 1fr; } }
+
+/* Cards */
+.card, .add-task-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding:20px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(22,26,49,0.04);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Titles */
+.card-title { margin:0 0 12px; font-size:16px; font-weight:600; color:#241f3a; }
+
+/* Inputs & forms */
+.form-row { margin-top:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.label { display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+.input {
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(20,24,48,0.06);
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  outline:none;
+  min-width:160px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+.input:focus { box-shadow:0 6px 18px rgba(99,102,241,0.12); border-color: rgba(108,92,231,0.28); }
+
+/* Buttons */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  background:#f3f4f6;
+  color:#111827;
+  cursor:pointer;
+  transition: all 160ms ease;
+  font-weight:600;
+}
+.btn.small { padding:6px 10px; font-size:13px; border-radius:8px; }
+.btn.primary {
+  background: linear-gradient(90deg,var(--accent), #8b6ff9);
+  color:white;
+  box-shadow: 0 8px 20px rgba(108,92,231,0.18);
+}
+.btn.outline {
+  background: transparent;
+  border: 1px solid rgba(38,43,77,0.06);
+}
+.btn.danger {
+  background: linear-gradient(90deg,#ff7a7a,#ff5757);
+  color:white;
+}
+.btn:hover { transform: translateY(-2px); }
+
+/* Add task card specifics */
+.add-task-card .card-title { margin-bottom:6px; }
+.time-row { display:flex; gap:12px; align-items:center; }
+.preview {
+  margin-top:14px;
+  padding:10px;
+  border-radius:10px;
+  background: linear-gradient(90deg,#f0fff4,#ffffff);
+  color: #155724;
+  border: 1px solid rgba(21,87,40,0.08);
+  font-weight:600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Right column list */
+.tasks-list { margin-top:12px; }
+.task-ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
+.task-row {
+  display:flex; justify-content:space-between; align-items:center;
+  background: linear-gradient(180deg,#ffffff,#fbfbff);
+  padding:12px; border-radius:10px; border:1px solid rgba(22,26,49,0.04);
+}
+.task-name { font-weight:600; color:#1f2340; }
+.task-time { font-size:13px; color:var(--muted); margin-top:4px; }
+
+/* Empty state */
+.no-tasks { color:var(--muted); padding:12px 0; }
+
+/* Footer */
+.footer { margin-top:auto; padding:20px 0; text-align:center; color:var(--muted); font-size:13px; }
+
+/* small screens */
+@media (max-width:520px){
+  .input { min-width:120px; }
+  .hero-title { font-size:22px; }
+}
+/* 24-hour slot table */
+.slot-ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.slot-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid rgba(22,26,49,0.05);
+  padding: 8px 12px;
+  box-shadow: 0 2px 4px rgba(20,24,48,0.02);
 }
 
-.App-link {
-  color: #61dafb;
+.slot-time {
+  font-weight: 600;
+  color: #2d2d40;
+  font-size: 14px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.slot-task {
+  font-size: 14px;
+  padding-left: 8px;
+  color: #111827;
 }
+
+.slot-task.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+.slot-actions button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background-color 160ms ease;
+}
+.slot-actions button:hover {
+  background: rgba(99,102,241,0.06);
+  color: var(--accent);
+}
+.slot-actions button:disabled {
+  color: rgba(123,127,144,0.4);
+  cursor: not-allowed;
+}
+
+/* Improved delete button style */
+.slot-actions .delete-btn {
+  color: #ff5757;
+  background: rgba(255,87,87,0.08);
+  transition: background 160ms, color 160ms;
+}
+.slot-actions .delete-btn:hover:not(:disabled) {
+  background: linear-gradient(90deg,#ff7a7a,#ff5757);
+  color: #fff;
+}
+.slot-row.editing-row {
+                background: #eaf7ff;
+            }
+            .slot-row {
+                display: flex;
+                align-items: center;
+            }
+            .delete-btn,
+            .edit-btn {
+                background: transparent;
+                border: none;
+                padding: 4px;
+                margin-left: 6px;
+                cursor: pointer;
+                transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
+                border-radius: 50%;
+                font-size: 1.1em;
+            }
+            .delete-btn {
+                color: #e74c3c;
+                border: 1.5px solid #e74c3c;
+            }
+            .delete-btn:hover {
+                background: #e74c3c;
+                color: #fff;
+                border-color: #c0392b;
+                box-shadow: 0 2px 12px rgba(231,76,60,0.25);
+                transform: scale(1.15) rotate(-8deg);
+            }
+            .edit-btn {
+                color: #2980d9;
+                border: 1.5px solid #2980d9;
+            }
+            .edit-btn:hover {
+                background: #d0eaff;
+                color: #fff;
+                border-color: #145a96;
+                box-shadow: 0 2px 8px rgba(41,128,217,0.15);
+                transform: scale(1.13) rotate(6deg);
+                z-index: 1;
+            }
+            .slot-task {
+                flex: 1;
+            }
+            .button-row {
+                display: flex;
+                align-items: center;
+                gap: 0;
+                flex-wrap: wrap;
+            }
+            .button-row .input[type="date"] {
+                min-width: 140px;
+            }
+            .icon-btn {
+                background: transparent;
+                border: 1.5px solid #2980d9;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background 0.2s, box-shadow 0.2s, transform 0.2s, color 0.2s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 6px;
+                color: #2980d9;
+                position: relative;
+                overflow: hidden;
+            }
+            .icon-btn:hover,
+            .download-btn:focus-visible {
+                background: linear-gradient(90deg, #d0eaff 0%, #eaf7ff 100%);
+                box-shadow: 0 2px 12px rgba(41,128,217,0.18);
+                transform: scale(1.13) rotate(6deg);
+                color: #145a96;
+            }
+            .download-btn .download-icon {
+                stroke: #2980d9;
+                transition: stroke 0.2s;
+            }
+            .download-btn:hover .download-icon,
+            .download-btn:focus-visible .download-icon {
+                stroke: #145a96;
+            }
+            .icon-btn:active {
+                background: #b3e0ff;
+                transform: scale(0.98);
+            }
+            .icon-btn svg {
+                display: block;
+            }
