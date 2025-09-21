@@ -1,7 +1,7 @@
 // Addtask.js
 import React, { useState, useEffect } from "react";
 import { addTask, updateTask } from "./db";
-import "./App.css";
+import "./Addtask.css";
 
 function Addtask({ onTaskAdded, taskToEdit, onTaskUpdated, clearEdit }) {
   const [taskName, setTaskName] = useState("");
@@ -85,7 +85,7 @@ function Addtask({ onTaskAdded, taskToEdit, onTaskUpdated, clearEdit }) {
             />
           </div>
 
-          <div className="form-row time-row">
+          <div className="form-row1 time-row">
             <div>
               <label className="label">From</label>
               <input
@@ -108,7 +108,7 @@ function Addtask({ onTaskAdded, taskToEdit, onTaskUpdated, clearEdit }) {
         </>
       )}
 
-      <div className="form-row">
+      <div className="form-row1">
         <button className="btn primary" onClick={handleCreateOrUpdate}>
           {taskToEdit ? "Update Task" : "Create Task"}
         </button>

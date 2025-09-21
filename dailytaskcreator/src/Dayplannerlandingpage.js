@@ -145,56 +145,54 @@ return (
 
                 <div className="right-col">
                     <div className="card">
-                        <h3 className="card-title">Your Tasks</h3>
-                       {!selectedDate && ( <p className="muted">
-                            Select a date to view your tasks for the day
-                        </p>)}
+                        <h3 className="card-title">My Schedule</h3>
+                       {/* {!selectedDate && ( <p className="muted">
+                            Click "Check Your Tasks" to view and manage your daily schedule.
+                        </p>)} */}
 
-                        <div className="form-row button-row">
-                            <button
-                                className="btn outline"
-                                onClick={handleCheckTasksClick}
-                            >
-                                Check Your Tasks
-                            </button>
-                            {showCalendar && (
-                                <>
-                                    <input
-                                        className="input"
-                                        type="date"
-                                        value={selectedDate}
-                                        onChange={(e) => handleDateChange(e.target.value)}
-                                        style={{ marginLeft: "10px" }}
-                                    />
-                                    {selectedDate && (
-                                        <button
-                                            className="btn icon-btn download-btn"
-                                            onClick={exportToPDF}
-                                            style={{ marginLeft: "10px", padding: "6px 10px" }}
-                                            title="Download PDF"
-                                        >
-                                            {/* Modern Download Icon (SVG) */}
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="22"
-                                                height="22"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                className="download-icon"
-                                            >
-                                                <path d="M12 3v12"/>
-                                                <path d="M6 15l6 6 6-6"/>
-                                                <rect x="4" y="21" width="16" height="2" rx="1"/>
-                                            </svg>
-                                        </button>
-                                    )}
-                                </>
-                            )}
-                        </div>
+                       <div className="form-row button-row">
+  <button className="btn outline" onClick={handleCheckTasksClick}>
+   View My Schedule
+  </button>
+
+  {showCalendar && (
+    <>
+      <input
+        className="btn outline input-btn"
+        type="date"
+        value={selectedDate}
+        onChange={(e) => handleDateChange(e.target.value)}
+      />
+      {selectedDate && (
+        <button
+          className="btn outline"
+          onClick={exportToPDF}
+          title="Download PDF"
+        >
+          {/* Download Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="download-icon"
+          >
+            <path d="M12 3v12"/>
+            <path d="M6 15l6 6 6-6"/>
+            <rect x="4" y="21" width="16" height="2" rx="1"/>
+          </svg>
+          &nbsp;Download
+        </button>
+      )}
+    </>
+  )}
+</div>
+
 
                         {showCalendar && (
                             <>
